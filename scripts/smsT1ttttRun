@@ -1,0 +1,3 @@
+cmsRun -e -j SUS-T1tttt_1_report.xml python/SUS-T1tttt_1_PREMIXRAW_cfg.py
+cmsRun -e -j SUS-T1tttt_2_report.xml python/SUS-T1tttt_2_AODSIM_cfg.py
+cmsRun -e -j SUS-T1tttt_3_report.xml python/SUS-T1tttt_3_MiniAOD_cfg.py
