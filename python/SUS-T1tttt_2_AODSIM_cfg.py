@@ -2,7 +2,7 @@
 # using: 
 # Revision: 1.19 
 # Source: /local/reps/CMSSW/CMSSW/Configuration/Applications/python/ConfigBuilder.py,v 
-# with command line options: --python_filename python/SUS-T1tttt_2_AODSIM_cfg.py --eventcontent AODSIM --customise Configuration/DataProcessing/Utils.addMonitoring --datatier AODSIM --fileout file:data/SUS-T1tttt_2_AODSIM.root --conditions auto:phase1_2018_realistic --procModifiers premix_stage2 --step RAW2DIGI,L1Reco,RECO,RECOSIM,EI --filein file:data/SUS-T1tttt_1_PREMIXRAW.root --era Run2_2018 --runUnscheduled --mc -n 10 1 --no_exec
+# with command line options: --python_filename python/SUS-T1tttt_2_AODSIM_cfg.py --eventcontent AODSIM --customise Configuration/DataProcessing/Utils.addMonitoring --datatier AODSIM --fileout file:SUS-T1tttt_2_AODSIM.root --conditions auto:phase1_2018_realistic --procModifiers premix_stage2 --step RAW2DIGI,L1Reco,RECO,RECOSIM,EI --filein file:SUS-T1tttt_1_PREMIXRAW.root --era Run2_2018 --runUnscheduled --mc --no_exec
 import FWCore.ParameterSet.Config as cms
 
 from Configuration.StandardSequences.Eras import eras
@@ -27,12 +27,12 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(10)
+    input = cms.untracked.int32(1)
 )
 
 # Input source
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('file:data/SUS-T1tttt_1_PREMIXRAW.root'),
+    fileNames = cms.untracked.vstring('file:SUS-T1tttt_1_PREMIXRAW.root'),
     secondaryFileNames = cms.untracked.vstring()
 )
 
@@ -42,7 +42,7 @@ process.options = cms.untracked.PSet(
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
-    annotation = cms.untracked.string('--python_filename nevts:10'),
+    annotation = cms.untracked.string('--python_filename nevts:1'),
     name = cms.untracked.string('Applications'),
     version = cms.untracked.string('$Revision: 1.19 $')
 )
@@ -57,7 +57,7 @@ process.AODSIMoutput = cms.OutputModule("PoolOutputModule",
         filterName = cms.untracked.string('')
     ),
     eventAutoFlushCompressedSize = cms.untracked.int32(31457280),
-    fileName = cms.untracked.string('file:data/SUS-T1tttt_2_AODSIM.root'),
+    fileName = cms.untracked.string('file:SUS-T1tttt_2_AODSIM.root'),
     outputCommands = process.AODSIMEventContent.outputCommands
 )
 

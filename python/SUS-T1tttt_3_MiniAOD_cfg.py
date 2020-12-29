@@ -2,7 +2,7 @@
 # using: 
 # Revision: 1.19 
 # Source: /local/reps/CMSSW/CMSSW/Configuration/Applications/python/ConfigBuilder.py,v 
-# with command line options: --python_filename python/SUS-T1tttt_3_MiniAOD_cfg.py --eventcontent MINIAODSIM --customise Configuration/DataProcessing/Utils.addMonitoring --datatier MINIAODSIM --runUnscheduled --procModifiers premix_stage2 --fileout file:data/SUS-T1tttt_3_MiniAOD.root --conditions auto:phase1_2018_realistic --step PAT --filein file:data/SUS-T1tttt_2_AODSIM.root --era Run2_2018 --mc -n 10 1 --no_exec
+# with command line options: --python_filename python/SUS-T1tttt_3_MiniAOD_cfg.py --eventcontent MINIAODSIM --customise Configuration/DataProcessing/Utils.addMonitoring --datatier MINIAODSIM --runUnscheduled --procModifiers premix_stage2 --fileout file:SUS-T1tttt_3_MiniAOD.root --conditions auto:phase1_2018_realistic --step PAT --filein file:SUS-T1tttt_2_AODSIM.root --era Run2_2018 --mc --no_exec
 import FWCore.ParameterSet.Config as cms
 
 from Configuration.StandardSequences.Eras import eras
@@ -24,12 +24,12 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(10)
+    input = cms.untracked.int32(1)
 )
 
 # Input source
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('file:data/SUS-T1tttt_2_AODSIM.root'),
+    fileNames = cms.untracked.vstring('file:SUS-T1tttt_2_AODSIM.root'),
     secondaryFileNames = cms.untracked.vstring()
 )
 
@@ -39,7 +39,7 @@ process.options = cms.untracked.PSet(
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
-    annotation = cms.untracked.string('--python_filename nevts:10'),
+    annotation = cms.untracked.string('--python_filename nevts:1'),
     name = cms.untracked.string('Applications'),
     version = cms.untracked.string('$Revision: 1.19 $')
 )
@@ -56,7 +56,7 @@ process.MINIAODSIMoutput = cms.OutputModule("PoolOutputModule",
     dropMetaData = cms.untracked.string('ALL'),
     eventAutoFlushCompressedSize = cms.untracked.int32(-900),
     fastCloning = cms.untracked.bool(False),
-    fileName = cms.untracked.string('file:data/SUS-T1tttt_3_MiniAOD.root'),
+    fileName = cms.untracked.string('file:SUS-T1tttt_3_MiniAOD.root'),
     outputCommands = process.MINIAODSIMEventContent.outputCommands,
     overrideBranchesSplitLevel = cms.untracked.VPSet(
         cms.untracked.PSet(
